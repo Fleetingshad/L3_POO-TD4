@@ -10,5 +10,10 @@ package extraction;
  * @author LUCIE
  */
 public class ExtracteurFile extends ExtracteurAbstract{
+
+    @Override
+    public InfosMot getNext() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
