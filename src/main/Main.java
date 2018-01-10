@@ -13,10 +13,14 @@ import java.util.TreeMap;
 public class Main {
 
     public static void main(String[] args) {
-        Extracteur eF = new ExtracteurFile();
-        Extracteur eS = new ExtracteurString();
-
+        try{            
+            Extracteur eF = new ExtracteurFile();
+            Extracteur eS = new ExtracteurString();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
         //Test de la classe IndexImpl seule
+        /*
         System.out.println("TESTS DE LA CLASSE INDEXATION SEULE\n");
 
         SortedMap m = new TreeMap<>(Collator.getInstance());
@@ -44,6 +48,6 @@ public class Main {
         System.out.println("Obtenir toutes les clés de l'index :\n" + i.obtenirCles() + '\n');
         i.vider();
         System.out.println("Affichage de l'index :\n" + i.toString());
-
+*/
     }
 }
