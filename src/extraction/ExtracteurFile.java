@@ -43,8 +43,7 @@ public class ExtracteurFile extends ExtracteurAbstract{
          in = new FileInputStream(CHEMINFICHIERIN); 
          while((i = in.read())!=-1) {             
              //on récupère le caractère
-             carac = (char)i; 
-             
+             carac = (char)i;             
              //on regarde le caractère unicode du char courant
              if(!Character.isLetterOrDigit(carac)){ 
                  //fin d'un mot ici normalement donc faut instancier un infomot               

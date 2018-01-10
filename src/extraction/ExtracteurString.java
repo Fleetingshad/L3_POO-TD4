@@ -26,27 +26,33 @@ public class ExtracteurString extends ExtracteurAbstract {
         // Parcours des caractères de la chaine de caractère
         char carac;
         StringBuilder sb = new StringBuilder();
-        int monCompteurDeColonne=0;
-        int monCompteurDeLigne=0;
+        int monCompteurDeColonne=1;
+        int monCompteurDeLigne=1;
         for (int i = 0; i < MACHAINE.length(); i++) {
              //on récupère le caractère
              carac = MACHAINE.charAt(i);
              //on regarde le caractère unicode du char courant
-             if( !Character.isLetterOrDigit(carac)){
-                 //fin d'un mot ici normalement donc faut instancier un infomot
-                 InfosMot im = new InfosMot(sb.toString(),monCompteurDeLigne,monCompteurDeColonne);
+              //on regarde le caractère unicode du char courant
+             if(!Character.isLetterOrDigit(carac)){ 
+                 //fin d'un mot ici normalement donc faut instancier un infomot               
+                 
+                 InfosMot im = new InfosMot(sb.toString(),monCompteurDeLigne,(monCompteurDeColonne-sb.length()));
                  //on remet le stringbuilder à plat
-                 sb.setLength(0);
-                 if(regexSautLigne(carac)){
-                     monCompteurDeColonne=0;
-                     monCompteurDeLigne++;
-                 }else{
-                     //on étend le stringbuilder du caractère lu
-                     sb.append(carac);
-                     //on incrémente le compteur de col
-                     monCompteurDeColonne++;
+                 System.out.println("\nINFOMOT : " + sb.toString() + " -> Ligne : " + monCompteurDeLigne+ " - Col : " + (monCompteurDeColonne-sb.length()));
+                 sb.setLength(0);       
+                  if(regexSautLigne(carac)){                      
+                     monCompteurDeColonne=0; 
+                     monCompteurDeLigne++;                      
                  }
+             }else{  
+                 //on étend le stringbuilder du caractère lu
+                 if(!Character.isSpaceChar(carac)){
+                    sb.append(carac);     
+                 }                
              }
+              
+            //on incrémente le compteur de col
+            monCompteurDeColonne++;
         }
     }
 

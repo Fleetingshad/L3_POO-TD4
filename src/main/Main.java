@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         try{            
-            Extracteur eF = new ExtracteurFile();
+         //   Extracteur eF = new ExtracteurFile();
             Extracteur eS = new ExtracteurString();
         }catch(Exception e){
             System.out.println(e.getMessage());
