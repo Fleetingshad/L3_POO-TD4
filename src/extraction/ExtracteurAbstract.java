@@ -26,6 +26,6 @@ public abstract class ExtracteurAbstract implements Extracteur{
      */
     public Boolean regexSautLigne(char c){
         //si on rencontre un saut de ligne
-        return (c == '\n'  || c=='\r' );
+        return c=='\n';
     }
 }

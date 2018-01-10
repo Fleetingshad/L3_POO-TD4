@@ -35,7 +35,7 @@ public class ExtracteurFile extends ExtracteurAbstract{
     public void readFile() throws IOException{
       int i;
       char carac;
-      int monCompteurDeLigne = 0;
+      int monCompteurDeLigne = 1;
       int monCompteurDeColonne = 0;
       StringBuilder sb = new StringBuilder();
       FileInputStream in = null;
@@ -46,24 +46,22 @@ public class ExtracteurFile extends ExtracteurAbstract{
              carac = (char)i; 
              
              //on regarde le caractère unicode du char courant
-             if(!Character.isLetterOrDigit(carac)){     
+             if(!Character.isLetterOrDigit(carac)){
                  //fin d'un mot ici normalement donc faut instancier un infomot               
                  InfosMot im = new InfosMot(sb.toString(),monCompteurDeLigne,(monCompteurDeColonne-sb.length()));
                  //on remet le stringbuilder à plat
                  System.out.println("\nINFOMOT : " + sb.toString() + " -> Ligne : " + monCompteurDeLigne+ " - Col : " + (monCompteurDeColonne-sb.length()));
-                 sb.setLength(0);
-                 if(regexSautLigne(carac)){
-                     monCompteurDeColonne=0;
-                      if(!Character.isWhitespace(carac)){
-                        monCompteurDeLigne++;     
-                      }
-                     
-                 } 
+                 sb.setLength(0);       
+                  if(regexSautLigne(carac)){
+                     System.out.println(regexSautLigne(carac));
+                     monCompteurDeColonne=0; 
+                     monCompteurDeLigne++;                      
+                 }
              }else{ 
                  //on étend le stringbuilder du caractère lu
                  if(!Character.isWhitespace(carac)){
                     sb.append(carac);     
-                 }                 
+                 }                
              }
              
             //on incrémente le compteur de col
