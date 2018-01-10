@@ -48,6 +48,7 @@ public class ExtracteurFile extends ExtracteurAbstract{
              //on regarde le caractère unicode du char courant
              if(!Character.isLetterOrDigit(carac)){ 
                  //fin d'un mot ici normalement donc faut instancier un infomot               
+                 
                  InfosMot im = new InfosMot(sb.toString(),monCompteurDeLigne,(monCompteurDeColonne-sb.length()));
                  //on remet le stringbuilder à plat
                  System.out.println("\nINFOMOT : " + sb.toString() + " -> Ligne : " + monCompteurDeLigne+ " - Col : " + (monCompteurDeColonne-sb.length()));
@@ -58,7 +59,7 @@ public class ExtracteurFile extends ExtracteurAbstract{
                  }
              }else{  
                  //on étend le stringbuilder du caractère lu
-                 if(!Character.isWhitespace(carac)){
+                 if(!Character.isSpaceChar(carac)){
                     sb.append(carac);     
                  }                
              }
