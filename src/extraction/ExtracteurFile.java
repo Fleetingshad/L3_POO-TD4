@@ -18,7 +18,7 @@ public class ExtracteurFile extends ExtracteurAbstract{
     /**
      * Declaration du path du fichier.txt
      */
-    private final static String CHEMINFICHIERIN = "C:\\\\Users\\\\Nicol\\\\Documents\\\\NetBeansProjects\\\\\\L3_POO-TD4\\\\src\\\\monFichierIn.txt"; 
+    private final static String CHEMIN_FICHIER_IN = "C:\\\\Users\\\\Nicol\\\\Documents\\\\NetBeansProjects\\\\\\L3_POO-TD4\\\\src\\\\monFichierIn.txt"; 
 
     /**
      * Constructeur par défaut de la classe ExtracteurFile
@@ -40,7 +40,7 @@ public class ExtracteurFile extends ExtracteurAbstract{
       StringBuilder sb = new StringBuilder();
       FileInputStream in = null;
       try {
-         in = new FileInputStream(CHEMINFICHIERIN); 
+         in = new FileInputStream(CHEMIN_FICHIER_IN); 
          while((i = in.read())!=-1) {             
              //on récupère le caractère
              carac = (char)i;             
@@ -76,6 +76,10 @@ public class ExtracteurFile extends ExtracteurAbstract{
               in.close();
           }
       } 
+    }
+    
+    public InfosMot getNext(String s){
+    return null;
     }
 
 

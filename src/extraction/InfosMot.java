@@ -33,6 +33,9 @@ public class InfosMot {
         this.ligne = ligne;
         this.colonne = colonne;
     }
+    
+    public InfosMot(){}
+    
     /**
      * Permet de récupérer un mot
      * @return un String qui contient le mot courant
@@ -79,5 +82,9 @@ public class InfosMot {
      */
     public void setColonne(int colonne){
         this.colonne = colonne;
+    }
+    
+    public String toString(){
+    return this.getMot()+" "+this.getLigne();
     }
 }

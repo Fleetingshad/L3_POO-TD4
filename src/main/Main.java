@@ -13,12 +13,34 @@ import java.util.TreeMap;
 public class Main {
 
     public static void main(String[] args) {
-        try{            
+     /*   try{            
          //   Extracteur eF = new ExtracteurFile();
             Extracteur eS = new ExtracteurString();
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
+        
+        */
+        
+        
+        //////:L work
+        String s = "bonjour\n est un mot \n\n  un mot est un mot , voilà";
+        Extracteur eS = new ExtracteurString();
+        SortedMap m = new TreeMap<>(Collator.getInstance());
+        IndexImpl<String, Integer> index = new IndexImpl<>(m);
+        InfosMot infoMot = new InfosMot();
+        do{
+            
+            infoMot = eS.getNext(s);
+           // index.ajouter(infoMot.getMot(), infoMot.getLigne());
+                  System.out.println("mot "+infoMot.toString());
+        }while (null != infoMot.getMot());
+        
+     //   System.out.println(index.toString());
+        
+        //////:end Lwork
+        
+        
         //Test de la classe IndexImpl seule
         /*
         System.out.println("TESTS DE LA CLASSE INDEXATION SEULE\n");
