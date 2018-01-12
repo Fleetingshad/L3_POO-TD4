@@ -17,7 +17,6 @@ public class Main {
             //   Extracteur eF = new ExtracteurFile();
 
             //TEST DE L'EXTRACTEUR STRING ET DE L'INDXATION
-            
             //Déclaration des chaînes à extraire puis indexer
             String chaine = "How much will, will a will \nsmiTh smith, if @ will smith will smith will? \n A wiLL smith will\n smith as much will as a \nWILL smith will,\n if a will smith will smith will.";
             String chaine2 = "Have   you ever \n\ndanced with the devil \n in THE  pale moonlight? \nHAVE \nYOU ?";
@@ -32,7 +31,7 @@ public class Main {
             EIString(chaine2, eS, new IndexImpl<>());
 
             //TEST DE LA CLASSE INDXIMPL SEULE
-           /* System.out.println("TESTS DE LA CLASSE INDEXATION SEULE\n");
+            /* System.out.println("TESTS DE LA CLASSE INDEXATION SEULE\n");
 
             IndexImpl<String, Integer> i = new IndexImpl<>();
             i.ajouter("Where", 1);
@@ -57,13 +56,20 @@ public class Main {
             System.out.println("Obtenir toutes les clés de l'index :\n" + i.obtenirCles() + '\n');
             i.vider();
             System.out.println("Affichage de l'index :\n" + i.toString());
-*/
+             */
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
     }
 
+    /**
+     * Processus extraction->indexation
+     *
+     * @param chaine un chaine de caractères
+     * @param extracteurS une instance d'extracteurString
+     * @param index une instance d'indexImpl
+     */
     public static void EIString(String chaine, Extracteur extracteurS, IndexImpl index) {
         InfosMot infoMot = new InfosMot();
         do {
@@ -72,10 +78,13 @@ public class Main {
                 break;
             }
             if (!infoMot.getMot().equals("")) {
-                System.out.println(infoMot.toString());
+
+                //Afficher la colonne de chaque mot 
+                //System.out.println(infoMot.toString());
                 index.ajouter(infoMot.getMot().toLowerCase(), infoMot.getLigne());
             }
         } while (null != infoMot.getMot());
+
         System.out.println(index.toString());
     }
 
