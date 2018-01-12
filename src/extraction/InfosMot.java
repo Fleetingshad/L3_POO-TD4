@@ -85,6 +85,6 @@ public class InfosMot {
     }
     
     public String toString(){
-    return this.getMot()+" "+this.getLigne();
+    return this.getMot()+" : Ligne : "+this.getLigne()+" Colonne : "+this.getColonne();
     }
 }

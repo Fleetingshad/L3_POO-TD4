@@ -8,7 +8,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 /**
- * @author LUCIE /
+ * @author LUCIE/
  *
  * /
  **
@@ -28,16 +28,7 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      */
     public IndexImpl() {
         this.sortedMap = new TreeMap<>(Collator.getInstance());
-    }
-
-    /**
-     * Constructeur prenant en paramètre une SortedMap : implémentation laissée
-     * au choix de l'utilisateur.
-     *
-     * @param m SortedMap
-     */
-    public IndexImpl(SortedMap m) {
-        this.sortedMap = m;
+        
     }
 
     /**
@@ -74,9 +65,9 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      */
     @Override
     public void ajouter(K cle, V valeur) {
-        if (this.sortedMap.containsKey(cle)) {
+        if (this.sortedMap.containsKey(cle) && !this.rechercher(cle, valeur)) {
             this.sortedMap.get(cle).add(valeur);
-        } else {
+        } else if (!(this.sortedMap != null && this.sortedMap.containsKey(cle) && this.rechercher(cle, valeur))) {
             this.sortedMap.put(cle, new ArrayList<>());
             this.sortedMap.get(cle).add(valeur);
         }

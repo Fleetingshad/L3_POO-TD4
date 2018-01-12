@@ -2,11 +2,12 @@ package indexation;
 
 import java.util.List;
 import java.util.Set;
-import java.util.SortedMap;
 
 /**
  *
  * @author LUCIE
+ * @param <K> Comparable K
+ * @param <V> Comparable V
  */
 public interface Index<K extends Comparable<K>, V extends Comparable<V>> {
 
