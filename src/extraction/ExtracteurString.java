@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package extraction;
 
 /**
@@ -14,7 +9,7 @@ public class ExtracteurString extends ExtracteurAbstract {
     /**
      * Chaine de caractères dont on extrait les mots
      */
-    private String chaine;
+    private final String chaine;
 
     /**
      * Ligne du mot extrait
@@ -39,7 +34,7 @@ public class ExtracteurString extends ExtracteurAbstract {
         this.chaine = chaine;
         this.cursor = 0;
         this.ligne = 1;
-        this.colonne = 1;
+        this.colonne = 0;
     }
 
     /**
@@ -53,30 +48,34 @@ public class ExtracteurString extends ExtracteurAbstract {
         int cptColonne = 0;
         //Si on n'est pas à la fin de la chaîne
         if (this.cursor < this.chaine.length()) {
-            //Si le caractère n'est pas une lettre ou un nombre
-            if (!Character.isLetterOrDigit(this.chaine.charAt(this.cursor))) {
-                //Si on a un changement de ligne
-                switch (this.chaine.charAt(this.cursor)) {
-                    case '\n':
-                        this.ligne++;
-                        this.colonne = 1;
-                        break;
-                    default :
-                        this.colonne++;
-                }
-                //Dans tous les cas, on avance d'un caractère dans la chaine
-                this.cursor++;
-            }
             //Parcours du mot à retourner
-            while (this.cursor < chaine.length() && Character.isLetterOrDigit(this.chaine.charAt(this.cursor))) {
+            while (Character.isLetterOrDigit(this.chaine.charAt(this.cursor))) {
                 sb.append(this.chaine.charAt(this.cursor));
                 cptColonne++;
                 this.cursor++;
                 this.colonne++;
             }
+            //Si on a un changement de ligne
+            if(this.cursor >= chaine.length()){
+                return null;
+            }
+            switch (this.chaine.charAt(this.cursor)) {
+                case '\n':
+                    this.ligne++;
+                    this.colonne = 0;
+                    break;
+                default:
+                    this.colonne++;
+            }
+            //Dans tous les cas, on avance d'un caractère dans la chaine
+            this.cursor++;
+            if (sb.toString().equals("")) {
+                return this.getNext();
+            }
+            
             return new InfosMot(sb.toString(), this.ligne, this.colonne - cptColonne);
         } else {
             return null;
         }
-    }
+    }   
 }
