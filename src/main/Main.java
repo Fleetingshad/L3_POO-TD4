@@ -16,8 +16,8 @@ public class Main {
         try {
             
             //TEST DE L'EXTRACTEUR STRING ET DE L'INDXATION
-            //Extracteur eF = new ExtracteurFile();
-
+            Extracteur eF = new ExtracteurFile("C:\\\\Users\\\\Nicol\\\\Documents\\\\NetBeansProjects\\\\\\L3_POO-TD4\\\\src\\\\monFichierIn.txt");
+            eF.getNext();
             //TEST DE L'EXTRACTEUR STRING ET DE L'INDXATION
             //Déclaration des chaînes à extraire puis indexer
             //String chaine = "How much will, will a will \nsmiTh smith, if @ will smith will smith will? \n A wiLL smith will\n smith as much will as a \nWILL smith will,\n if a will smith will smith will.";
@@ -64,7 +64,8 @@ public class Main {
             i.vider();
             System.out.println("Affichage de l'index :\n" + i.toString());
              */
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.println(e.getMessage());
         }
 
@@ -76,19 +77,22 @@ public class Main {
      * @param extracteurS une instance d'extracteurString
      * @param index une instance d'indexImpl
      */
-    public static void EIString(Extracteur extracteurS, IndexImpl index) {
+    public static void EIString(Extracteur extracteurS, IndexImpl index)
+    {
         InfosMot infoMot = new InfosMot();
-        do {
+        do
+        {
             infoMot = extracteurS.getNext();
-            if (infoMot == null) {
+            if (infoMot == null)
+            {
                 break;
             }
-            if (!infoMot.getMot().equals("")) {
+            if (!infoMot.getMot().equals(""))
+            {
                 index.ajouter(infoMot.getMot().toLowerCase(), infoMot.getLigne());
             }
         } while (null != infoMot.getMot());
 
         System.out.println(index.toString());
     }
-
 }
