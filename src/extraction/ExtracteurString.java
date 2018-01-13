@@ -56,9 +56,6 @@ public class ExtracteurString extends ExtracteurAbstract {
                 this.colonne++;
             }
             //Si on a un changement de ligne
-            if(this.cursor >= chaine.length()){
-                return null;
-            }
             switch (this.chaine.charAt(this.cursor)) {
                 case '\n':
                     this.ligne++;
@@ -72,7 +69,6 @@ public class ExtracteurString extends ExtracteurAbstract {
             if (sb.toString().equals("")) {
                 return this.getNext();
             }
-            
             return new InfosMot(sb.toString(), this.ligne, this.colonne - cptColonne);
         } else {
             return null;

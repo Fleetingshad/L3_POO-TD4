@@ -39,7 +39,7 @@ public class Main {
             //  EIString(eS2, new IndexImpl<>());
             //  EIString(eS3, new IndexImpl<>());
 
-            //TEST DE LA CLASSE INDXIMPL SEULE
+         /*   //TEST DE LA CLASSE INDXIMPL SEULE
              System.out.println("TESTS DE LA CLASSE INDEXATION SEULE\n");
 
             IndexImpl<String, Integer> i = new IndexImpl<>();
@@ -65,7 +65,7 @@ public class Main {
             System.out.println("Obtenir toutes les clés de l'index :\n" + i.obtenirCles() + '\n');
             i.vider();
             System.out.println("Vidage de l'index...affichage :\n" + i.toString());
-             
+          */   
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -85,6 +85,10 @@ public class Main {
             if (infoMot == null) {
                 break;
             }
+            
+            //Si on veut voir les infoMots avec leur colonne (fonctionnalité implementée mais inutilisée dans le cadre d'un index)
+            //System.out.println(infoMot.toString());
+            
             index.ajouter(infoMot.getMot().toLowerCase(), infoMot.getLigne());
         } while (null != infoMot.getMot());
         System.out.println(index.toString());
