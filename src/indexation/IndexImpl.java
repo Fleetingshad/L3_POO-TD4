@@ -8,7 +8,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 /**
- * @author LUCIE/
+ * @author Lucie et Nicolas
  *
  * /
  **
@@ -18,7 +18,8 @@ import java.util.TreeMap;
 public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> implements Index<K, V> {
 
     /**
-     * SortedMap pour stocker les clés et les valeurs de l'index
+     * SortedMap de clé et valeurs pour stocker les clés et les valeurs de
+     * l'index
      */
     private final SortedMap<K, List<V>> sortedMap;
 
@@ -28,13 +29,13 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      */
     public IndexImpl() {
         this.sortedMap = new TreeMap<>(Collator.getInstance());
-        
+
     }
 
     /**
      * Supprime une clé de l'index et les valeurs associées
      *
-     * @param cle
+     * @param cle une clé à supprimer de l'index 
      */
     @Override
     public void supprimer(K cle) {
@@ -45,8 +46,8 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      * Supprime une valeur de l'index, supprime la clé si c'était la dernière
      * valeur pour cette clé
      *
-     * @param cle
-     * @param valeur
+     * @param cle une clé dans l'index
+     * @param valeur une valeur à supprimer de l'index
      */
     @Override
     public void supprimer(K cle, V valeur) {
@@ -60,8 +61,8 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      * Ajoute une clé et une valeur à l'index, si la clé existe déjà, ajoute la
      * valeur à la clé existante
      *
-     * @param cle
-     * @param valeur
+     * @param cle une clé à ajouter à l'index 
+     * @param valeur une valeur à ajouter à l'index 
      */
     @Override
     public void ajouter(K cle, V valeur) {
@@ -76,7 +77,7 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
     /**
      * Retourne les valeurs d'une clé donnée
      *
-     * @param cle
+     * @param cle une clé dans l'index
      * @return une Liste de valeurs
      */
     @Override
@@ -87,8 +88,8 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
     /**
      * Vérifie si une clé contient la valeur passée en paramètre
      *
-     * @param cle
-     * @param valeur
+     * @param cle une clé dans l'index
+     * @param valeur une valeur à trouver dans l'index 
      * @return un booléen vrai si l'index contient le couple clé-valeur donné en
      * paramètre
      */
@@ -152,5 +153,4 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
         }
         return sb.toString();
     }
-
 }

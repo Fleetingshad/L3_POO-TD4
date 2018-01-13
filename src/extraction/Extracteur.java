@@ -2,13 +2,14 @@ package extraction;
 
 /**
  *
- * @author LUCIE
+ * @author Lucie et Nicolas
  */
 public interface Extracteur {
+
     /**
      * Renvoie le prochain mot lu par le code
-     * @param s String
+     *
      * @return InfosMot
      */
-    public InfosMot getNext(String s);
+    public InfosMot getNext();
 }

@@ -8,28 +8,35 @@ import java.util.TreeMap;
 
 /**
  *
- * @author LUCIE
+ * @author Lucie et Nicolas
  */
 public class Main {
 
     public static void main(String[] args) {
         try {
-            //   Extracteur eF = new ExtracteurFile();
+            
+            //TEST DE L'EXTRACTEUR STRING ET DE L'INDXATION
+            //Extracteur eF = new ExtracteurFile();
 
             //TEST DE L'EXTRACTEUR STRING ET DE L'INDXATION
             //Déclaration des chaînes à extraire puis indexer
-            String chaine = "How much will, will a will \nsmiTh smith, if @ will smith will smith will? \n A wiLL smith will\n smith as much will as a \nWILL smith will,\n if a will smith will smith will.";
+            //String chaine = "How much will, will a will \nsmiTh smith, if @ will smith will smith will? \n A wiLL smith will\n smith as much will as a \nWILL smith will,\n if a will smith will smith will.";
             String chaine2 = "Have   you ever \n\ndanced with the devil \n in THE  pale moonlight? \nHAVE \nYOU ?";
-            String chaine3 = "bonjour hello a \n ici moi.";
+            String chaine3 = "bonjour "+'\r'+" hello\t a \n ici \42moi.";
+            String chaine4 = "Un tout petit chien, joli \n ronge un  joli petit os ;\nTout ce qui est petit est joli.";
 
             //Déclaration de l'extracteur et de l'index
-            Extracteur eS = new ExtracteurString();
+            Extracteur eS = new ExtracteurString(chaine4);
             IndexImpl<String, Integer> index = new IndexImpl<>();
-
+           // Extracteur eS2 = new ExtracteurString(chaine2);  
+           // Extracteur eS3 = new ExtracteurString(chaine3);
+            
             //Méthode du processus extraction string -> indexation
-            EIString(chaine, eS, index);
-            EIString(chaine2, eS, new IndexImpl<>());
+            EIString(eS, index);
+          //  EIString(eS2, new IndexImpl<>());
+          //  EIString(eS3, new IndexImpl<>());
 
+            
             //TEST DE LA CLASSE INDXIMPL SEULE
             /* System.out.println("TESTS DE LA CLASSE INDEXATION SEULE\n");
 
@@ -66,21 +73,17 @@ public class Main {
     /**
      * Processus extraction->indexation
      *
-     * @param chaine un chaine de caractères
      * @param extracteurS une instance d'extracteurString
      * @param index une instance d'indexImpl
      */
-    public static void EIString(String chaine, Extracteur extracteurS, IndexImpl index) {
+    public static void EIString(Extracteur extracteurS, IndexImpl index) {
         InfosMot infoMot = new InfosMot();
         do {
-            infoMot = extracteurS.getNext(chaine);
+            infoMot = extracteurS.getNext();
             if (infoMot == null) {
                 break;
             }
             if (!infoMot.getMot().equals("")) {
-
-                //Afficher la colonne de chaque mot 
-                //System.out.println(infoMot.toString());
                 index.ajouter(infoMot.getMot().toLowerCase(), infoMot.getLigne());
             }
         } while (null != infoMot.getMot());

@@ -7,9 +7,14 @@ package extraction;
 
 /**
  *
- * @author LUCIE
+ * @author Lucie et Nicolas
  */
 public class ExtracteurString extends ExtracteurAbstract {
+
+    /**
+     * Chaine de caractères dont on extrait les mots
+     */
+    private String chaine;
 
     /**
      * Ligne du mot extrait
@@ -27,8 +32,11 @@ public class ExtracteurString extends ExtracteurAbstract {
 
     /**
      * Constructeur de la classe ExtracteurString, initialise la ligne
+     *
+     * @param chaine une chaine de caractères
      */
-    public ExtracteurString() {
+    public ExtracteurString(String chaine) {
+        this.chaine = chaine;
         this.cursor = 0;
         this.ligne = 1;
         this.colonne = 1;
@@ -37,40 +45,38 @@ public class ExtracteurString extends ExtracteurAbstract {
     /**
      * Extrait un mot d'une chaine de caractères
      *
-     * @param chaine la chaine de caractères dont on veut extraire les mots
      * @return un InfoMot
      */
     @Override
-    public InfosMot getNext(String chaine) {
+    public InfosMot getNext() {
         StringBuilder sb = new StringBuilder();
         int cptColonne = 0;
-        if (this.cursor < chaine.length()) {
+        //Si on n'est pas à la fin de la chaîne
+        if (this.cursor < this.chaine.length()) {
             //Si le caractère n'est pas une lettre ou un nombre
-            if (!Character.isLetterOrDigit(chaine.charAt(this.cursor))) {
-                if (chaine.charAt(this.cursor) == '\n') {
-                    this.ligne++;
-                    this.colonne = 1;
-                }else if(chaine.charAt(this.cursor) == ' '){
-                            this.colonne ++;
+            if (!Character.isLetterOrDigit(this.chaine.charAt(this.cursor))) {
+                //Si on a un changement de ligne
+                switch (this.chaine.charAt(this.cursor)) {
+                    case '\n':
+                        this.ligne++;
+                        this.colonne = 1;
+                        break;
+                    default :
+                        this.colonne++;
                 }
+                //Dans tous les cas, on avance d'un caractère dans la chaine
                 this.cursor++;
-                return new InfosMot("", this.ligne, this.colonne);
             }
             //Parcours du mot à retourner
-            while (this.cursor < chaine.length() && Character.isLetterOrDigit(chaine.charAt(this.cursor))) {
-                sb.append(chaine.charAt(this.cursor));
+            while (this.cursor < chaine.length() && Character.isLetterOrDigit(this.chaine.charAt(this.cursor))) {
+                sb.append(this.chaine.charAt(this.cursor));
                 cptColonne++;
                 this.cursor++;
                 this.colonne++;
             }
             return new InfosMot(sb.toString(), this.ligne, this.colonne - cptColonne);
         } else {
-            //Pour réinitialiser l'extracteur pour l'utiliser avec une autre chaîne.
-            this.cursor = 0;
-            this.ligne = 1;
-            this.colonne = 1;
             return null;
         }
     }
-
 }
