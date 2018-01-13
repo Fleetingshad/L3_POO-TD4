@@ -17,14 +17,14 @@ public class ExtracteurFile extends ExtracteurAbstract{
 
     private int ligne;
     private int col;
-    private String pathFile;
+    private final String pathFile;
     
     /**
      * Constructeur de la classe 
      * 
      * @param pathFile le chemin du fichier que l'on souhaite extraire.
      */
-    public ExtracteurFile(String pathFile){
+    public ExtracteurFile(final String pathFile){
         this.pathFile = pathFile;
         ligne = 1;
         col = 1;
@@ -82,8 +82,6 @@ public class ExtracteurFile extends ExtracteurAbstract{
        StringBuilder sb = new StringBuilder();
        FileInputStream in = null;
        InfosMot im = null;
-       try
-       {
            try
            {
                //ouverture du fichier
@@ -97,7 +95,6 @@ public class ExtracteurFile extends ExtracteurAbstract{
                    {
                        //construction du mot
                        im = new InfosMot(sb.toString(),ligne,(col-sb.length()));
-
                        System.out.println("\nINFOMOT : " + sb.toString() + " -> Ligne : " + ligne+ " - Col : " + (col-sb.length()));
                        sb.setLength(0);
                        if(regexSautLigne(carac))
@@ -119,23 +116,27 @@ public class ExtracteurFile extends ExtracteurAbstract{
                    col++;
                }
            }
-           catch (Exception e)
+           catch (IOException e)
            {
                e.printStackTrace();
            }
            finally
            {
-               //fermeture du flux FileInputStream
-               if(in != null)
+               try
+               {                   
+                    //fermeture du flux FileInputStream
+                    if(in != null)
+                    {
+                        in.close();
+                    } 
+               }
+               catch(IOException ioe)
                {
-                   in.close();
-               } 
+                   ioe.printStackTrace();
+               }
+               
            }
-       }
-       finally
-       {
-           return null;
-       }
+       return null;
    }
 
 
