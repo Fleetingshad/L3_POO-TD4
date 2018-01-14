@@ -24,7 +24,7 @@ public class Main {
             //Déclaration des chaînes à extraire puis indexer
             String chaine = "How much will, will a will \nsmiTh smith, if @ will smith will smith will? \n A wiLL smith will\n smith as much will as a \nWILL smith will,\n if a will smith will smith will.";
             String chaine2 = "Have   you ever \n\ndanced with the devil \n in THE  pale moonlight? \nHAVE \nYOU ?";
-            String chaine3 = "Incroyable " + '\r' + " on dirait \t de \n\n la \n\42MAGIE! ";
+            String chaine3 = "Incroyable, " + '\r' + " on dirait \t de \n\n la \n\42MAGIE! ";
             String chaine4 = "Un tout petit chien, joli \n ronge un  joli petit os ;\nTout ce qui est petit est joli.";
             String chaine5 = chaine3 + chaine4;
 
@@ -53,9 +53,8 @@ public class Main {
             //  EI(eS2, new IndexImpl<>());
             //  EI(eS3, new IndexImpl<>());
 
-            /*
-            
             //TEST DE LA CLASSE INDEXIMPL SEULE
+            /*
             System.out.println("TESTS DE LA CLASSE INDEXATION SEULE\n");
 
             IndexImpl<String, Integer> i = new IndexImpl<>();
@@ -84,9 +83,9 @@ public class Main {
 
             //TEST DE LA CLASSE INFOSMOT SEULE
             System.out.println("\nTESTS DE LA CLASSE INFOSMOT SEULE\n");
-            InfosMot word = new InfosMot("Je suis un InfosMot", 0, 0);
+            InfosMot word = new InfosMot("Exemple", 0, 0);
             System.out.println(word.toString());
-             */
+            */
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -99,14 +98,11 @@ public class Main {
      * @param extracteur une instance d'extracteur
      * @param index une instance d'indexImpl
      */
-    public static void EI(Extracteur extracteur, IndexImpl index)
-    {
+    public static void EI(Extracteur extracteur, IndexImpl index) {
         InfosMot infoMot = new InfosMot();
-        do 
-        {
+        do {
             infoMot = extracteur.getNext();
-            if (infoMot == null)
-            {
+            if (infoMot == null) {
                 break;
             }
             //Si on veut voir les infoMots avec leur colonne (fonctionnalité implementée mais inutilisée dans le cadre d'un index)

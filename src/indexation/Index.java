@@ -9,13 +9,12 @@ import java.util.Set;
  * @param <K> Comparable K
  * @param <V> Comparable V
  */
-public interface Index<K extends Comparable<K>, V extends Comparable<V>>
-{
-    
+public interface Index<K extends Comparable<K>, V extends Comparable<V>> {
+
     /**
      * Supprime une clé de l'index et les valeurs associées
      *
-     * @param cle une clé à supprimer de l'index 
+     * @param cle une clé à supprimer de l'index
      */
     public void supprimer(K cle);
 
@@ -32,8 +31,8 @@ public interface Index<K extends Comparable<K>, V extends Comparable<V>>
      * Ajoute une clé et une valeur à l'index, si la clé existe déjà, ajoute la
      * valeur à la clé existante
      *
-     * @param cle une clé à ajouter à l'index 
-     * @param valeur une valeur à ajouter à l'index 
+     * @param cle une clé à ajouter à l'index
+     * @param valeur une valeur à ajouter à l'index
      */
     public void ajouter(K cle, V valeur);
 

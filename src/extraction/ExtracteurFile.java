@@ -35,10 +35,10 @@ public class ExtracteurFile implements Extracteur {
      * d'instance
      *
      * @param file le fichier que l'on souhaite extraire.
-     * @throws java.io.FileNotFoundException exception pouvant être renvoyée par la méthode
+     * @throws java.io.FileNotFoundException exception pouvant être renvoyée par
+     * la méthode
      */
-    public ExtracteurFile(FileInputStream file) throws FileNotFoundException
-    {
+    public ExtracteurFile(FileInputStream file) throws FileNotFoundException {
         this.file = file;
         this.ligne = 1;
         this.col = 0;
@@ -50,41 +50,30 @@ public class ExtracteurFile implements Extracteur {
      * @return un InfoMot
      */
     @Override
-    public InfosMot getNext()
-    {
+    public InfosMot getNext() {
         StringBuilder sb = new StringBuilder();
         //Position dans le fichier
         int cursor = 0;
-        try 
-        {
-            while ((cursor = this.file.read()) != -1 && Character.isLetterOrDigit((char) cursor))
-            {
+        try {
+            while ((cursor = this.file.read()) != -1 && Character.isLetterOrDigit((char) cursor)) {
                 //on insère le caractère dans la chaine
                 sb.append((char) cursor);
                 this.col++;
             }
-            switch ((char) cursor)
-            {
-                case '\n':
-                    this.ligne++;
-                    this.col = 0;
-                    break;
-                default:
-                    this.col++;
+            if ((char) cursor == '\n') {
+                this.ligne++;
+                this.col = 0;
+            } else {
+                this.col++;
             }
             //Dans tous les cas, on avance d'un caractère dans la chaine
-            if (sb.toString().equals("") && cursor != -1)
-            {
+            if (sb.toString().equals("") && cursor != -1) {
                 return this.getNext();
-            }
-            else if (cursor != -1)
-            {
+            } else if (cursor != -1) {
                 return new InfosMot(sb.toString(), ligne, (col - sb.length()));
             }
             this.file.close();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.getMessage();
         }
         return null;

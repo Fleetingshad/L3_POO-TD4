@@ -5,6 +5,7 @@ package extraction;
  * @author Lucie et Nicolas
  */
 public class ExtracteurString implements Extracteur {
+
     /**
      * Chaine de caractères dont on extrait les mots
      */
@@ -25,12 +26,12 @@ public class ExtracteurString implements Extracteur {
     private int cursor;
 
     /**
-     * Constructeur de la classe ExtracteurString, initialise les variables d'instance
+     * Constructeur de la classe ExtracteurString, initialise les variables
+     * d'instance
      *
      * @param chaine une chaine de caractères
      */
-    public ExtracteurString(final String chaine)
-    {
+    public ExtracteurString(final String chaine) {
         this.chaine = chaine;
         this.cursor = 0;
         this.ligne = 1;
@@ -43,42 +44,33 @@ public class ExtracteurString implements Extracteur {
      * @return un InfoMot
      */
     @Override
-    public InfosMot getNext()
-    {
+    public InfosMot getNext() {
         StringBuilder sb = new StringBuilder();
         int cptColonne = 0;
         //Si on n'est pas à la fin de la chaîne
-        if (this.cursor < this.chaine.length())
-        {
+        if (this.cursor < this.chaine.length()) {
             //Parcours du mot à retourner
-            while (Character.isLetterOrDigit(this.chaine.charAt(this.cursor)))
-            {
+            while (Character.isLetterOrDigit(this.chaine.charAt(this.cursor))) {
                 sb.append(this.chaine.charAt(this.cursor));
                 cptColonne++;
                 this.cursor++;
                 this.colonne++;
             }
             //Si on a un changement de ligne
-            switch (this.chaine.charAt(this.cursor))
-            {
-                case '\n':
-                    this.ligne++;
-                    this.colonne = 0;
-                    break;
-                default:
-                    this.colonne++;
+            if (this.chaine.charAt(this.cursor) == '\n') {
+                this.ligne++;
+                this.colonne = 0;
+            } else {
+                this.colonne++;
             }
             //Dans tous les cas, on avance d'un caractère dans la chaine
             this.cursor++;
-            if (sb.toString().equals(""))
-            {
+            if (sb.toString().equals("")) {
                 return this.getNext();
             }
             return new InfosMot(sb.toString(), this.ligne, this.colonne - cptColonne);
-        }
-        else
-        {
+        } else {
             return null;
         }
-    }   
+    }
 }
