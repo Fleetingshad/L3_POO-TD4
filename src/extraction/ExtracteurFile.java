@@ -5,139 +5,80 @@
  */
 package extraction;
 
-    
-import java.io.*; 
-import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  *
- * @author LUCIE
+ * @author Lucie et Nicolas
  */
-public class ExtracteurFile extends ExtracteurAbstract{
+public class ExtracteurFile implements Extracteur {
 
+    /**
+     * Fichier dont on extrait les mots
+     */
+    private final FileInputStream file;
+
+    /**
+     * Ligne du mot extrait
+     */
     private int ligne;
+
+    /**
+     * Colonne de la première lettre du mot extrait
+     */
     private int col;
-    private final String pathFile;
-    
+
     /**
-     * Constructeur de la classe 
-     * 
-     * @param pathFile le chemin du fichier que l'on souhaite extraire.
+     * Constructeur de la classe ExtracteurFile, initialise les variables
+     * d'instance
+     *
+     * @param file le fichier que l'on souhaite extraire.
+     * @throws java.io.FileNotFoundException exception pouvant être renvoyée par la méthode
      */
-    public ExtracteurFile(final String pathFile){
-        this.pathFile = pathFile;
-        ligne = 1;
-        col = 1;
+    public ExtracteurFile(FileInputStream file) throws FileNotFoundException {
+        this.file = file;
+        this.ligne = 1;
+        this.col = 0;
     }
-    /**
-     * Accesseur sur le membre privé ligne.
-     * 
-     * @return le numéro de la ligne.
-     */
-    public int getLigne()
-   {
-       return this.ligne;
-   }
 
     /**
-     * Accesseur sur le membre privé col.
-     * 
-     * @return lé numéro de colonne.
+     * Extrait les mots d'un fichier texte
+     *
+     * @return un InfoMot
      */
-   public int getCol()
-   {
-       return this.col;
-   }
-
-   /**
-    * Setteut pour le membre privé ligne.
-    * 
-    * @param ligne le nouveau numéro de ligne.
-    */
-   public void setLigne(int ligne)
-   {
-       this.ligne = ligne;
-   }
-
-   /**
-    * Setteur pour le membre privé col.
-    * 
-    * @param col le nouveau numéro de col.
-    */
-   public void setCol(int col)
-   {
-       this.col = col;
-   }
-
-   /**
-   * Extrait les mots d'un fichier texte
-   *
-   * @return un InfoMot
-   */
-   @Override
-   public InfosMot getNext()
-   { 
-       int i = 0;
-       char carac;
-       StringBuilder sb = new StringBuilder();
-       FileInputStream in = null;
-       InfosMot im = null;
-           try
-           {
-               //ouverture du fichier
-               in = new FileInputStream(this.pathFile);
-               while((i = in.read())!=-1)
-               {                   
-                   //on récupère le caractère
-                   carac = (char)i;
-                   //on regarde le caractère unicode du char courant
-                   if(!Character.isLetterOrDigit(carac))
-                   {
-                       //construction du mot
-                       im = new InfosMot(sb.toString(),ligne,(col-sb.length()));
-                       System.out.println("\nINFOMOT : " + sb.toString() + " -> Ligne : " + ligne+ " - Col : " + (col-sb.length()));
-                       sb.setLength(0);
-                       if(regexSautLigne(carac))
-                       {
-                           ligne++;
-                           setLigne(ligne);
-                           setCol(0);
-                       } 
-                   }
-                   else
-                   {
-                       //on étend le stringbuilder du caractère lu
-                       if(!Character.isSpaceChar(carac))
-                       {
-                           sb.append(carac);
-                       }
-                   }
-                   //on incrémente le compteur de col
-                   col++;
-               }
-           }
-           catch (IOException e)
-           {
-               e.printStackTrace();
-           }
-           finally
-           {
-               try
-               {                   
-                    //fermeture du flux FileInputStream
-                    if(in != null)
-                    {
-                        in.close();
-                    } 
-               }
-               catch(IOException ioe)
-               {
-                   ioe.printStackTrace();
-               }
-               
-           }
-       return null;
-   }
-
+    @Override
+    public InfosMot getNext() {
+        StringBuilder sb = new StringBuilder();
+        //Position dans le fichier
+        int cursor = 0;
+        try {
+            while ((cursor = this.file.read()) != -1 && Character.isLetterOrDigit((char) cursor)) {
+                //on insère le caractère dans la chaine
+                sb.append((char) cursor);
+                this.col++;
+            }
+            switch ((char) cursor) {
+                case '\n':
+                    //  System.out.println("HERE");
+                    this.ligne++;
+                    this.col = 0;
+                    break;
+                default:
+                    this.col++;
+            }
+            //Dans tous les cas, on avance d'un caractère dans la chaine
+            if (sb.toString().equals("") && cursor != -1) {
+                return this.getNext();
+            } else if (cursor != -1) {
+                return new InfosMot(sb.toString(), ligne, (col - sb.length()));
+            }
+            this.file.close();
+        } catch (IOException e) {
+            e.getMessage();
+        }
+        return null;
+    }
 
 }

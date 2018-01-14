@@ -76,7 +76,7 @@ public class InfosMot {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.getMot());
-        sb.append("  ligne : ");
+        sb.append(" ->  ligne : ");
         sb.append(this.getLigne());
         sb.append("  colonne : ");
         sb.append(this.getColonne());

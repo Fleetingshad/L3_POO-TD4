@@ -4,7 +4,7 @@ package extraction;
  *
  * @author Lucie et Nicolas
  */
-public class ExtracteurString extends ExtracteurAbstract {
+public class ExtracteurString implements Extracteur {
 
     /**
      * Chaine de caractères dont on extrait les mots
@@ -26,7 +26,7 @@ public class ExtracteurString extends ExtracteurAbstract {
     private int cursor;
 
     /**
-     * Constructeur de la classe ExtracteurString, initialise la ligne
+     * Constructeur de la classe ExtracteurString, initialise les variables d'instance
      *
      * @param chaine une chaine de caractères
      */
