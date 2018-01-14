@@ -9,7 +9,8 @@ import java.util.Set;
  * @param <K> Comparable K
  * @param <V> Comparable V
  */
-public interface Index<K extends Comparable<K>, V extends Comparable<V>> {
+public interface Index<K extends Comparable<K>, V extends Comparable<V>>
+{
     
     /**
      * Supprime une clé de l'index et les valeurs associées

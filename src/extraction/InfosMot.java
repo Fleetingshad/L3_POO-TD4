@@ -28,7 +28,8 @@ public class InfosMot {
      * @param ligne le numéro de la ligne du mot
      * @param colonne le numéro de colonne du mot
      */
-    public InfosMot(String mot, int ligne, int colonne) {
+    public InfosMot(final String mot, int ligne, int colonne)
+    {
         this.mot = mot;
         this.ligne = ligne;
         this.colonne = colonne;
@@ -37,7 +38,9 @@ public class InfosMot {
     /**
      * Constructeur vide
      */
-    public InfosMot() {
+    public InfosMot()
+    {
+        
     }
 
     /**
@@ -45,7 +48,8 @@ public class InfosMot {
      *
      * @return un String qui contient le mot courant
      */
-    public String getMot() {
+    public String getMot()
+    {
         return this.mot;
     }
 
@@ -54,7 +58,8 @@ public class InfosMot {
      *
      * @return un entier qui indique le numéro de ligne
      */
-    public int getLigne() {
+    public int getLigne()
+    {
         return this.ligne;
     }
 
@@ -63,7 +68,8 @@ public class InfosMot {
      *
      * @return un entier qui indique le numéro de la colonne
      */
-    public int getColonne() {
+    public int getColonne()
+    {
         return this.colonne;
     }
 
@@ -73,12 +79,13 @@ public class InfosMot {
      * @return les informations de l'InfoMot
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         StringBuilder sb = new StringBuilder();
         sb.append(this.getMot());
-        sb.append(" ->  ligne : ");
+        sb.append(" ->\t ligne : ");
         sb.append(this.getLigne());
-        sb.append("  colonne : ");
+        sb.append("\t colonne : ");
         sb.append(this.getColonne());
         return sb.toString();
     }

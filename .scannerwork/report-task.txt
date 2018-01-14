@@ -1,0 +1,6 @@
+projectKey=poo:framework_collection
+serverUrl=http://localhost:9000
+serverVersion=6.7.0.33306
+dashboardUrl=http://localhost:9000/dashboard/index/poo:framework_collection
+ceTaskId=AWD1B3f_7tTAjM6YYcBx
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWD1B3f_7tTAjM6YYcBx
