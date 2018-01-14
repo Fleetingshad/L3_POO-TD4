@@ -15,7 +15,8 @@ import java.util.TreeMap;
  * @param <K> Comparable K
  * @param <V> Comparable V
  */
-public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> implements Index<K, V> {
+public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> implements Index<K, V>
+{
 
     /**
      * SortedMap de clé et valeurs pour stocker les clés et les valeurs de
@@ -27,7 +28,8 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      * Constructeur vide, par défaut implémentation de la SortedMap avec une
      * TreeMap
      */
-    public IndexImpl() {
+    public IndexImpl()
+    {
         this.sortedMap = new TreeMap<>(Collator.getInstance());
 
     }
@@ -38,7 +40,8 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      * @param cle une clé à supprimer de l'index 
      */
     @Override
-    public void supprimer(K cle) {
+    public void supprimer(K cle)
+    {
         this.sortedMap.remove(cle);
     }
 
@@ -50,9 +53,11 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      * @param valeur une valeur à supprimer de l'index
      */
     @Override
-    public void supprimer(K cle, V valeur) {
+    public void supprimer(K cle, V valeur)
+    {
         this.sortedMap.get(cle).remove(valeur);
-        if (this.sortedMap.get(cle).isEmpty()) {
+        if (this.sortedMap.get(cle).isEmpty())
+        {
             this.supprimer(cle);
         }
     }
@@ -65,10 +70,14 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      * @param valeur une valeur à ajouter à l'index 
      */
     @Override
-    public void ajouter(K cle, V valeur) {
-        if (this.sortedMap.containsKey(cle) && !this.rechercher(cle, valeur)) {
+    public void ajouter(K cle, V valeur)
+    {
+        if (this.sortedMap.containsKey(cle) && !this.rechercher(cle, valeur))
+        {
             this.sortedMap.get(cle).add(valeur);
-        } else if (!(this.sortedMap != null && this.sortedMap.containsKey(cle) && this.rechercher(cle, valeur))) {
+        }
+        else if (!(this.sortedMap != null && this.sortedMap.containsKey(cle) && this.rechercher(cle, valeur)))
+        {
             this.sortedMap.put(cle, new ArrayList<>());
             this.sortedMap.get(cle).add(valeur);
         }
@@ -81,7 +90,8 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      * @return une Liste de valeurs
      */
     @Override
-    public List<V> rechercher(K cle) {
+    public List<V> rechercher(K cle)
+    {
         return this.sortedMap.get(cle);
     }
 
@@ -94,7 +104,8 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      * paramètre
      */
     @Override
-    public boolean rechercher(K cle, V valeur) {
+    public boolean rechercher(K cle, V valeur)
+    {
         List<V> listeV = this.rechercher(cle);
         return listeV.contains(valeur);
     }
@@ -105,7 +116,8 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      * @return la taille de l'index
      */
     @Override
-    public int nbeCles() {
+    public int nbeCles()
+    {
         return this.sortedMap.size();
     }
 
@@ -115,7 +127,8 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      * @return un bouléen vrai si l'index est vide
      */
     @Override
-    public boolean estVide() {
+    public boolean estVide()
+    {
         return this.sortedMap.isEmpty();
     }
 
@@ -123,7 +136,8 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      * Vide l'index
      */
     @Override
-    public void vider() {
+    public void vider()
+    {
         this.sortedMap.clear();
     }
 
@@ -133,7 +147,8 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      * @return les clés de l'index
      */
     @Override
-    public Set<K> obtenirCles() {
+    public Set<K> obtenirCles()
+    {
         return this.sortedMap.keySet();
     }
 
@@ -143,9 +158,11 @@ public class IndexImpl<K extends Comparable<K>, V extends Comparable<V>> impleme
      * @return une chaîne de caractères
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         StringBuilder sb = new StringBuilder();
-        for (K key : this.obtenirCles()) {
+        for (K key : this.obtenirCles())
+        {
             sb.append(key);
             sb.append(" : ");
             sb.append(this.rechercher(key));

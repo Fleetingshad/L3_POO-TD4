@@ -99,11 +99,14 @@ public class Main {
      * @param extracteur une instance d'extracteur
      * @param index une instance d'indexImpl
      */
-    public static void EI(Extracteur extracteur, IndexImpl index) {
+    public static void EI(Extracteur extracteur, IndexImpl index)
+    {
         InfosMot infoMot = new InfosMot();
-        do {
+        do 
+        {
             infoMot = extracteur.getNext();
-            if (infoMot == null) {
+            if (infoMot == null)
+            {
                 break;
             }
             //Si on veut voir les infoMots avec leur colonne (fonctionnalité implementée mais inutilisée dans le cadre d'un index)
